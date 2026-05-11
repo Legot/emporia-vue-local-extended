@@ -13,98 +13,101 @@
     state_class: measurement
     unit_of_measurement: A
 
+  # - <<: *template_realcurrent
+  #   id: phase_a_realcurrent
+  #   lambda: 'return backfeedable(${ct_a.backfeed}, id(phase_a_powermeas).state / voltage_by_phase("${ct_a.phase}"));' # This should be a correct calculation for all but edge cases, use the one below
+
+
+  # - <<: *template_realcurrent
+  #   id: phase_b_realcurrent
+  #   lambda: 'return backfeedable(${ct_b.backfeed}, id(phase_b_powermeas).state / voltage_by_phase("${ct_b.phase}"));' # This should be a correct calculation for all but edge cases, use the one below
+
+
+  # - <<: *template_realcurrent
+  #   id: phase_c_realcurrent
+  #   lambda: 'return backfeedable(${ct_c.backfeed}, id(phase_c_powermeas).state / voltage_by_phase("${ct_c.phase}"));' # This should be a correct calculation for all but edge cases, use the one below
+
   - <<: *template_realcurrent
     id: phase_a_realcurrent
-    lambda: 'return backfeedable(${ct_a.backfeed}, id(phase_a_powermeas).state / voltage_by_phase("${ct_a.phase}"));' 
+    lambda: 'return backfeedable(${ct_a.backfeed}, id(phase_a_powermeas).state / single_phase_voltage("${ct_a.phase}") * voltage_by_phase("${ct_a.phase}"));'
 
 
   - <<: *template_realcurrent
     id: phase_b_realcurrent
-    lambda: 'return backfeedable(${ct_b.backfeed}, id(phase_b_powermeas).state / voltage_by_phase("${ct_b.phase}"));'
+    lambda: 'return backfeedable(${ct_b.backfeed}, id(phase_b_powermeas).state / single_phase_voltage("${ct_b.phase}") * voltage_by_phase("${ct_b.phase}"));'
 
 
   - <<: *template_realcurrent
     id: phase_c_realcurrent
-    lambda: 'return backfeedable(${ct_c.backfeed}, id(phase_c_powermeas).state / voltage_by_phase("${ct_c.phase}"));'
+    lambda: 'return backfeedable(${ct_c.backfeed}, id(phase_c_powermeas).state / single_phase_voltage("${ct_c.phase}") * voltage_by_phase("${ct_c.phase}"));'
 
 
   - <<: *template_realcurrent
     id: cir1_realcurrent
-    lambda: 'return backfeedable(${ct_1.backfeed}, id(cir1_powermeas).state / voltage_by_phase("${ct_1.phase}"));'
-
+    lambda: 'return backfeedable(${ct_1.backfeed}, id(cir1_powermeas).state / single_phase_voltage("${ct_1.phase}") * voltage_by_phase("${ct_1.phase}"));'
 
   - <<: *template_realcurrent
     id: cir2_realcurrent
-    lambda: 'return backfeedable(${ct_2.backfeed}, id(cir2_powermeas).state / voltage_by_phase("${ct_2.phase}"));'
-
+    lambda: 'return backfeedable(${ct_2.backfeed}, id(cir2_powermeas).state / single_phase_voltage("${ct_2.phase}") * voltage_by_phase("${ct_2.phase}"));'
 
   - <<: *template_realcurrent
     id: cir3_realcurrent
-    lambda: 'return backfeedable(${ct_3.backfeed}, id(cir3_powermeas).state / voltage_by_phase("${ct_3.phase}"));'
-
+    lambda: 'return backfeedable(${ct_3.backfeed}, id(cir3_powermeas).state / single_phase_voltage("${ct_3.phase}") * voltage_by_phase("${ct_3.phase}"));'
 
   - <<: *template_realcurrent
     id: cir4_realcurrent
-    lambda: 'return backfeedable(${ct_4.backfeed}, id(cir4_powermeas).state / voltage_by_phase("${ct_4.phase}"));'
-
+    lambda: 'return backfeedable(${ct_4.backfeed}, id(cir4_powermeas).state / single_phase_voltage("${ct_4.phase}") * voltage_by_phase("${ct_4.phase}"));'
 
   - <<: *template_realcurrent
     id: cir5_realcurrent
-    lambda: 'return backfeedable(${ct_5.backfeed}, id(cir5_powermeas).state / voltage_by_phase("${ct_5.phase}"));'
-
+    lambda: 'return backfeedable(${ct_5.backfeed}, id(cir5_powermeas).state / single_phase_voltage("${ct_5.phase}") * voltage_by_phase("${ct_5.phase}"));'
 
   - <<: *template_realcurrent
     id: cir6_realcurrent
-    lambda: 'return backfeedable(${ct_6.backfeed}, id(cir6_powermeas).state / voltage_by_phase("${ct_6.phase}"));'
-
+    lambda: 'return backfeedable(${ct_6.backfeed}, id(cir6_powermeas).state / single_phase_voltage("${ct_6.phase}") * voltage_by_phase("${ct_6.phase}"));'
 
   - <<: *template_realcurrent
     id: cir7_realcurrent
-    lambda: 'return backfeedable(${ct_7.backfeed}, id(cir7_powermeas).state / voltage_by_phase("${ct_7.phase}"));'
+    lambda: 'return backfeedable(${ct_7.backfeed}, id(cir7_powermeas).state / single_phase_voltage("${ct_7.phase}") * voltage_by_phase("${ct_7.phase}"));'
 
   - <<: *template_realcurrent
     id: cir8_realcurrent
-    lambda: 'return backfeedable(${ct_8.backfeed}, id(cir8_powermeas).state / voltage_by_phase("${ct_8.phase}"));'
+    lambda: 'return backfeedable(${ct_8.backfeed}, id(cir8_powermeas).state / single_phase_voltage("${ct_8.phase}") * voltage_by_phase("${ct_8.phase}"));'
 
   - <<: *template_realcurrent
     id: cir9_realcurrent
-    lambda: 'return backfeedable(${ct_9.backfeed}, id(cir9_powermeas).state / voltage_by_phase("${ct_9.phase}"));'
-
+    lambda: 'return backfeedable(${ct_9.backfeed}, id(cir9_powermeas).state / single_phase_voltage("${ct_9.phase}") * voltage_by_phase("${ct_9.phase}"));'
 
   - <<: *template_realcurrent
     id: cir10_realcurrent
-    lambda: 'return backfeedable(${ct_10.backfeed}, id(cir10_powermeas).state / voltage_by_phase("${ct_10.phase}"));'
-
+    lambda: 'return backfeedable(${ct_10.backfeed}, id(cir10_powermeas).state / single_phase_voltage("${ct_10.phase}") * voltage_by_phase("${ct_10.phase}"));'
 
   - <<: *template_realcurrent
     id: cir11_realcurrent
-    lambda: 'return backfeedable(${ct_11.backfeed}, id(cir11_powermeas).state / voltage_by_phase("${ct_11.phase}"));'
-
+    lambda: 'return backfeedable(${ct_11.backfeed}, id(cir11_powermeas).state / single_phase_voltage("${ct_11.phase}") * voltage_by_phase("${ct_11.phase}"));'
 
   - <<: *template_realcurrent
     id: cir12_realcurrent
-    lambda: 'return backfeedable(${ct_12.backfeed}, id(cir12_powermeas).state / voltage_by_phase("${ct_12.phase}"));'
-
+    lambda: 'return backfeedable(${ct_12.backfeed}, id(cir12_powermeas).state / single_phase_voltage("${ct_12.phase}") * voltage_by_phase("${ct_12.phase}"));'
+    
   - <<: *template_realcurrent
     id: cir13_realcurrent
-    lambda: 'return backfeedable(${ct_13.backfeed}, id(cir13_powermeas).state / voltage_by_phase("${ct_13.phase}"));'
+    lambda: 'return backfeedable(${ct_13.backfeed}, id(cir13_powermeas).state / single_phase_voltage("${ct_13.phase}") * voltage_by_phase("${ct_13.phase}"));'
 
   - <<: *template_realcurrent
     id: cir14_realcurrent
-    lambda: 'return backfeedable(${ct_14.backfeed}, id(cir14_powermeas).state / voltage_by_phase("${ct_14.phase}"));'
-
+    lambda: 'return backfeedable(${ct_14.backfeed}, id(cir14_powermeas).state / single_phase_voltage("${ct_14.phase}") * voltage_by_phase("${ct_14.phase}"));'
 
   - <<: *template_realcurrent
     id: cir15_realcurrent
-    lambda: 'return backfeedable(${ct_15.backfeed}, id(cir15_powermeas).state / voltage_by_phase("${ct_15.phase}"));'
-
+    lambda: 'return backfeedable(${ct_15.backfeed}, id(cir15_powermeas).state / single_phase_voltage("${ct_15.phase}") * voltage_by_phase("${ct_15.phase}"));'
 
   - <<: *template_realcurrent
     id: cir16_realcurrent
-    lambda: 'return backfeedable(${ct_16.backfeed}, id(cir16_powermeas).state / voltage_by_phase("${ct_16.phase}"));'
+    lambda: 'return backfeedable(${ct_16.backfeed}, id(cir16_powermeas).state / single_phase_voltage("${ct_16.phase}") * voltage_by_phase("${ct_16.phase}"));'
 
 
-################################
+  ################################
   ## Real Current Configuration ##
   ################################
   - &copy_realcurrent_sensor
