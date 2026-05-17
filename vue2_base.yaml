@@ -1,26 +1,3 @@
-substitutions:
-  clamp_on:
-    ct_a:   'phase_${ct_a.phase[0:1]}'
-    ct_b:   'phase_${ct_b.phase[0:1]}'
-    ct_c:   'phase_${ct_c.phase[0:1]}'
-    ct_1:   'phase_${ct_1.phase[0:1]}'
-    ct_2:   'phase_${ct_2.phase[0:1]}'
-    ct_3:   'phase_${ct_3.phase[0:1]}'
-    ct_4:   'phase_${ct_4.phase[0:1]}'
-    ct_5:   'phase_${ct_5.phase[0:1]}'
-    ct_6:   'phase_${ct_6.phase[0:1]}'
-    ct_7:   'phase_${ct_7.phase[0:1]}'
-    ct_8:   'phase_${ct_8.phase[0:1]}'
-    ct_9:   'phase_${ct_9.phase[0:1]}'
-    ct_10: 'phase_${ct_10.phase[0:1]}'
-    ct_11: 'phase_${ct_11.phase[0:1]}'
-    ct_12: 'phase_${ct_12.phase[0:1]}'
-    ct_13: 'phase_${ct_13.phase[0:1]}'
-    ct_14: 'phase_${ct_14.phase[0:1]}'
-    ct_15: 'phase_${ct_15.phase[0:1]}'
-    ct_16: 'phase_${ct_16.phase[0:1]}'
-    vue_variant: vue2
-
 external_components:
   - source:
       type: git
@@ -44,6 +21,29 @@ phase_config: # Do Not edit here. Edit the substitutions.
   phase_b_c_voltage: phase_b_c_voltage
   phase_a_c_voltage: phase_a_c_voltage
   phase_a_b_c_voltage: phase_a_b_c_voltage
+
+substitutions:
+  vue_variant: vue2
+  clamp_on:
+    ct_a:   'phase_${ct_a.phase[0:1]}'
+    ct_b:   'phase_${ct_b.phase[0:1]}'
+    ct_c:   'phase_${ct_c.phase[0:1]}'
+    ct_1:   'phase_${ct_1.phase[0:1]}'
+    ct_2:   'phase_${ct_2.phase[0:1]}'
+    ct_3:   'phase_${ct_3.phase[0:1]}'
+    ct_4:   'phase_${ct_4.phase[0:1]}'
+    ct_5:   'phase_${ct_5.phase[0:1]}'
+    ct_6:   'phase_${ct_6.phase[0:1]}'
+    ct_7:   'phase_${ct_7.phase[0:1]}'
+    ct_8:   'phase_${ct_8.phase[0:1]}'
+    ct_9:   'phase_${ct_9.phase[0:1]}'
+    ct_10: 'phase_${ct_10.phase[0:1]}'
+    ct_11: 'phase_${ct_11.phase[0:1]}'
+    ct_12: 'phase_${ct_12.phase[0:1]}'
+    ct_13: 'phase_${ct_13.phase[0:1]}'
+    ct_14: 'phase_${ct_14.phase[0:1]}'
+    ct_15: 'phase_${ct_15.phase[0:1]}'
+    ct_16: 'phase_${ct_16.phase[0:1]}'
 
 packages:
   - !include sensors/inputs.yaml
