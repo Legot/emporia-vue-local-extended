@@ -1,0 +1,128 @@
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/emporia-vue-local/esphome
+      ref: dev
+    components: [emporia_vue]
+      
+  - source:
+      type: git
+      url: https://github.com/Legot/emporia-vue-local-extended
+      ref: main  # Should always be main unless testing
+    components: [phase_config]
+    refresh: 0s
+
+phase_config: # Do Not edit here. Edit the substitutions.
+  overall_voltage: overall_voltage
+  phase_a_voltage: phase_a_voltage
+  phase_b_voltage: phase_b_voltage
+  phase_c_voltage: phase_c_voltage
+  phase_a_b_voltage: phase_a_b_voltage
+  phase_b_c_voltage: phase_b_c_voltage
+  phase_a_c_voltage: phase_a_c_voltage
+  phase_a_b_c_voltage: phase_a_b_c_voltage
+
+substitutions:
+  clamp_on:
+    ct_a:   'phase_${ct_a.phase[0:1]}'
+    ct_b:   'phase_${ct_b.phase[0:1]}'
+    ct_c:   'phase_${ct_c.phase[0:1]}'
+    ct_1:   'phase_${ct_1.phase[0:1]}'
+    ct_2:   'phase_${ct_2.phase[0:1]}'
+    ct_3:   'phase_${ct_3.phase[0:1]}'
+    ct_4:   'phase_${ct_4.phase[0:1]}'
+    ct_5:   'phase_${ct_5.phase[0:1]}'
+    ct_6:   'phase_${ct_6.phase[0:1]}'
+    ct_7:   'phase_${ct_7.phase[0:1]}'
+    ct_8:   'phase_${ct_8.phase[0:1]}'
+    ct_9:   'phase_${ct_9.phase[0:1]}'
+    ct_10: 'phase_${ct_10.phase[0:1]}'
+    ct_11: 'phase_${ct_11.phase[0:1]}'
+    ct_12: 'phase_${ct_12.phase[0:1]}'
+    ct_13: 'phase_${ct_13.phase[0:1]}'
+    ct_14: 'phase_${ct_14.phase[0:1]}'
+    ct_15: 'phase_${ct_15.phase[0:1]}'
+    ct_16: 'phase_${ct_16.phase[0:1]}'
+    vue_variant: vue3
+
+packages:
+  - !include sensors/inputs.yaml
+  - !include sensors/grid_sensors.yaml
+  - !include sensors/voltage.yaml
+  - !include sensors/apparent_current.yaml
+  - !include sensors/real_current.yaml
+  - !include sensors/real_power.yaml
+  - !include sensors/apparent_power.yaml
+  - !include sensors/power_factor.yaml
+  - !include sensors/time.yaml
+  - !include sensors/daily_energy.yaml
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  on_boot: #beeps the buzzer
+    then:
+      - rtttl.play: 'two_short:d=4,o=5,b=100:16e6,16e6'
+  
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+    version: recommended
+
+api:
+  services:
+    - service: play_rtttl
+      variables:
+        song_str: string
+      then:
+        - rtttl.play:
+            rtttl: !lambda 'return song_str;'
+
+logger:
+  logs:
+    # by default, every reading will be printed to the UART, which is very slow
+    # This will disable printing the readings but keep other helpful messages
+    sensor: INFO
+  # level: VERBOSE
+
+preferences:
+  # please also make sure `restore: false` is set on all `platform: total_daily_energy`
+  # sensors below.
+  flash_write_interval: "48h"
+
+output:
+  - platform: ledc
+    pin:
+      number: GPIO12
+      ignore_strapping_warning: true
+    id: buzzer
+  - platform: gpio
+    pin: GPIO27
+    id: buzzer_gnd
+
+rtttl:
+  output: buzzer
+  on_finished_playback:
+    - logger.log: 'Song ended!'
+
+status_led:
+  pin:
+    number: 23
+    inverted: True
+
+
+i2c:    # https://github.com/emporia-vue-local/esphome/discussions/376#discussioncomment-15201004
+  sda:
+    number: 5
+    ignore_strapping_warning: true
+  scl: 18
+  scan: false
+  frequency: 400kHz  # recommended range is 50-200kHz
+  timeout: 1ms # https://github.com/esphome/issues/issues/6335#issuecomment-2418437672
+  id: i2c_a
+
+button:
+  - platform: safe_mode
+    name: "Safe Mode Restart"
