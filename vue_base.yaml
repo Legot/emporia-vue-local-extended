@@ -1,2 +1,2 @@
-packages:
+packages:  # this exists for compatability, please select vue2_base.yaml or vue3_base.yaml in your esphome config file!
   - !include vue2_base.yaml
