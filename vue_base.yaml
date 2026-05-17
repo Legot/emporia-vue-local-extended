@@ -1,2 +1,2 @@
 packages:
-  - !include sensors/inputs.yaml
+  - !include vue2_base.yaml
