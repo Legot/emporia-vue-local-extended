@@ -32,6 +32,15 @@ And from those we calculate extended measurements using lambdas on the ESP32
 - Also uses lots of lambdas
 
 ## Configuration
+Including the package is important.
+```yaml
+  emporia_vue_extended:
+    url: https://github.com/Legot/emporia-vue-local-extended
+    ref: main
+    files: [vue2_base.yaml] # vue2_base.yaml is for the vue2 and vue3_base.yaml is for the vue3
+    refresh: 0s  # Sets esphome to update this file at each compilatoin
+```
+
 The configuration relies mostly on substitutions. All options are needed, and if you mess something up it most likely will not compile.
 ```yaml
 substitutions:
