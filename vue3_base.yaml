@@ -24,6 +24,7 @@ phase_config: # Do Not edit here. Edit the substitutions.
   phase_a_b_c_voltage: phase_a_b_c_voltage
 
 substitutions:
+  vue_variant: vue3
   clamp_on:
     ct_a:   'phase_${ct_a.phase[0:1]}'
     ct_b:   'phase_${ct_b.phase[0:1]}'
@@ -44,7 +45,6 @@ substitutions:
     ct_14: 'phase_${ct_14.phase[0:1]}'
     ct_15: 'phase_${ct_15.phase[0:1]}'
     ct_16: 'phase_${ct_16.phase[0:1]}'
-    vue_variant: vue3
 
 packages:
   - !include sensors/inputs.yaml
