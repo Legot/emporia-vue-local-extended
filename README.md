@@ -47,8 +47,6 @@ substitutions:
   name: em02
   friendly_name: EM02
 
-  vue_variant: vue2  # Can be either vue2 or vue3, this only effects Phase A and C current measurements on the vue3
-
   phase_a_voltage_calibration: 0.02164686998
   phase_b_voltage_calibration: 0.02276118
   phase_c_voltage_calibration: 0.022
