@@ -4,7 +4,6 @@
 substitutions:
   name: energy_monitor
   friendly_name: "Energy Monitor"
-  vue_variant: vue2  # Can be either vue2 or vue3, this only effects Phase A and C current measurements on the vue3
 
   phase_a_voltage_calibration: 0.022
   phase_b_voltage_calibration: 0.022
@@ -47,7 +46,7 @@ packages:
   emporia_vue_extended:
     url: https://github.com/Legot/emporia-vue-local-extended
     ref: main
-    files: [vue_base.yaml]
+    files: [vue2_base.yaml]  # change to vue3_base.yaml for a vue3 device
 
 ##################################################################
 api:
