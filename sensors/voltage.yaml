@@ -5,9 +5,11 @@ binary_sensor:
     id: split_phase_system
     lambda: |-
       bool ct_c_disabled = "${ct_c.disable}";
+      int angle = id(phase_a_angle).state;
 
       if (ct_c_disabled) {
-          bool split = (int) round(id(phase_a_angle).state) == 180;
+          // Check if angle is closer to 180 than to 120 or 240
+          bool split = (abs(angle - 180) < abs(angle - 120)) && (abs(angle - 180) < abs(angle - 240));
           return split;
       } else {
           return false;
