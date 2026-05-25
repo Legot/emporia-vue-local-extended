@@ -1,7 +1,7 @@
 
 binary_sensor:
   - platform: template
-    name: split
+    name: "Split Phase System"
     id: split_phase_system
     lambda: |-
       bool ct_c_disabled = "${ct_c.disable}";
@@ -14,7 +14,7 @@ binary_sensor:
       } else {
           return false;
       }
-    internal: false
+    internal: true
 
 sensor:
 ###########################
