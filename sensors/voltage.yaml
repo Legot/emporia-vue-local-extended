@@ -11,7 +11,7 @@ binary_sensor:
       } else {
           return false;
       }
-    internal: true
+    internal: false
 
 sensor:
 ###########################
@@ -27,13 +27,17 @@ sensor:
         float sq_b = pow(id(phase_b_voltage).state, 2);
         float sq_c = pow(id(phase_c_voltage).state, 2);
         bool disabled = "${ct_c.disable}";
+        bool split = id(split_phase_system).state;
 
         // For two legs not split by 180 degrees, consider them part of a 3-phase system
         if (disabled) {
-          bool split = id(split_phase_system).state;
-          return split ? (a + b) : sqrt(sq_a + sq_b + (a * b));
+            if (split) {
+                return a + b;
+            } else {
+                return sqrt(sq_a + sq_b + (a * b));
+            }
         } else {
-          return sqrt(sq_a + sq_b + sq_c);
+            return sqrt(sq_a + sq_b + sq_c);
         }
     update_interval: never
     device_class: voltage
