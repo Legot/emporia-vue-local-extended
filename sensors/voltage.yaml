@@ -1,6 +1,7 @@
 
 binary_sensor:
   - platform: template
+    name: split
     id: split_phase_system
     lambda: |-
       bool ct_c_disabled = "${ct_c.disable}";
